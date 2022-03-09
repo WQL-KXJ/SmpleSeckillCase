@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<title>login</title>
+<link rel="stylesheet" type="text/css" href="/static/css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/demo.css" />
+<!--必要样式-->
+<link rel="stylesheet" type="text/css" href="/static/css/component.css" />
+<!--[if IE]>
+<script src="/static/js/html5.js"></script>
+<![endif]-->
+</head>
+<body>
+		<div class="container demo-1">
+			<div class="content">
+				<div id="large-header" class="large-header">
+					<canvas id="demo-canvas"></canvas>
+					<div class="logo_box">
+						<h3 style="color: blueviolet;font-size:30px">简单的秒杀系统</h3>
+						<form action="#" name="f" method="post">
+							<div class="input_outer">
+								<span class="u_user"></span>
+								<input id="account" name="logname" class="text" style="color: red !important" type="text" placeholder="请输入账户">
+							</div>
+							<div class="input_outer">
+								<span class="us_uer"></span>
+								<input id="password" name="logpass" class="text" style="color: red !important; position:absolute; z-index:100;"value="" type="password" placeholder="请输入密码">
+							</div>
+							<div class="mb2"><a id="seckill" class="act-but submit" href="javascript:;" style="color: #FFFFFF">登录</a></div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div><!-- /container -->
+		<script src="/static/js/TweenLite.min.js"></script>
+		<script src="/static/js/EasePack.min.js"></script>
+		<script src="/static/js/rAF.js"></script>
+		<script src="/static/js/demo-1.js"></script>
+		<script src="/static/js/jquery-3.6.0.min.js"></script>
+		<div style="text-align:center;"></div>
+
+		<script type="application/javascript">
+
+			$("#seckill").click(function () {
+				var account = $("#account").val();
+				var password = $("#password").val();
+				var obj ={
+					username:account,
+					password:password
+				}
+				$.ajax({
+				url: "/admin/login",
+				type: "POST",
+				dataType: "json",
+				data: obj,
+				success : function (datas) {
+				if(datas.code==200){
+					location.href="/goods/goodspack"
+					alert("登录成功！")
+				}else {
+						alert("登录失败!")
+					}
+				}}
+				)
+			});
+
+		</script>
+
+	</body>
+
+
+</html>

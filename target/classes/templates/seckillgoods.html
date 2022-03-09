@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>秒杀详情</title>
+    <script src="/static/js/jquery-3.6.0.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+</head>
+<body>
+  <div class="panel panel-default">
+      <div class="panel-heading">秒杀商品详情</div>
+      <div class="panel-body">
+          <span th:if="${#httpSession.getAttribute('user') eq ''}">您没有登录，请进行登录操作</span>
+          <span>没有收获地址提示！！</span>
+      </div>
+      <table class="table" id="goods">
+          <tr>
+              <td>商品名称</td>
+              <td th:text="${seck.getGoodsName()}" colspan="3" >
+              </td>
+          </tr>
+          <tr>
+              <td>商品图片</td>
+              <td colspan="3">
+                  <img th:src="${seck.goodsImg}" width="200" height="200"/>
+              </td>
+          </tr>
+          <tr>
+              <td>秒杀开始时间</td>
+              <td th:text="${#temporals.format(seck.getStartDate(),'yyyy-MM-dd HH:mm:ss')}"></td>
+              <td id="seckillTip">
+                  <input type="hidden" id="time" th:value="${seckilltime}">
+                  <input type="hidden" id="miao" th:value="${seckillstatus}">
+                  <span th:if="${seckillstatus eq 0}">秒杀正在进行</span>
+                  <span th:if="${seckillstatus eq 1}">秒杀倒计时：<span id="seckilltime" th:text="${seckilltime}"></span>秒</span>
+                  <span th:if="${seckillstatus eq 2}">秒杀已结束</span>
+              </td>
+              <td>
+                  <div class="row">
+                      <div class="form-inline">
+                          <img id="captchImg" height="32" width="130" onclick="refresshCaptcha()" style="display: none"/>
+                          <input id="captcha" class="form-control">
+                      <input id="seckid" type="hidden" name="goodsid" th:value="${seck.getId()}" style="display: none">
+                      <button class="btn btn-primary"  id="buyButton" onclick="interface()">立即秒杀</button>
+                      </div>
+                  </div>
+              </td>
+          </tr>
+          <tr>
+              <td>商品配置</td>
+              <td colspan="3" th:text="${seck.getGoodsDetail()}"></td>
+          </tr>
+          <tr>
+              <td>商品原价</td>
+              <td colspan="3" th:text="${seck.goodsPrice}"></td>
+          </tr>
+          <tr>
+              <td>商品秒杀价</td>
+              <td colspan="3" th:text="${seck.seckillPrice}"></td>
+          </tr>
+          <tr>
+              <td>库存数量</td>
+              <td colspan="3" th:text="${seck.stockCount}"></td>
+          </tr>
+      </table>
+  </div>
+</body>
+<script type="text/javascript">
+
+    $(function () {
+    seckill();
+    });
+
+    function seckill() {
+        var timeout;
+        var miao = $("#miao").val();
+        var val2 = $("#time").val();
+        if(val2>0){
+            $("#buyButton").attr("disabled",true);
+            timeout = setTimeout(function () {
+                $("#seckilltime").text(val2-1);
+                $("#time").val(val2-1);
+                seckill();
+            },1000)
+        }else if(val2 == 0 || miao==0){
+            if(timeout){
+                clearTimeout(timeout);
+            }
+            $("#captchImg").attr("src","/seckill/captcha/"+ $("#seckid").val());
+            $("#captchImg").show();
+            $("#captcha").show();
+            $("#seckillTip").html("秒杀进行中");
+
+        }else{
+            $("#seckillTip").html("秒杀已结束");
+            $("#buyButton").attr("disabled",true);
+            $("#captchImg").hide();
+            $("#captcha").hide();
+        }
+    }
+
+    //暴露接口
+    function interface() {
+        var id = $("#seckid").val();
+
+        var code = $("#captcha").val();
+
+        if(code!=""){
+        $.ajax({
+            url: "/tSeckillOrder/Seckillfalse/"+id+"/"+code,
+            type: "GET",
+            dataType: "json",
+            success : function (datas) {
+                if(datas.code==200){
+                interfaceaddr(datas.obj.path);
+                }else if(datas==410){
+                    alert("点击过于频繁")
+                }else {
+                    alert("验证码错误")
+                }
+            },
+            error : function (data) {
+                if(datas==410){
+                    alert("点击过于频繁")
+
+                }
+            }
+        })}else{
+            alert("验证码不能为空")
+        }
+    }
+
+    //调用隐藏接口
+    function interfaceaddr(path) {
+        var id = $("#seckid").val();
+        var datas= {
+            goodsid:id,
+        }
+        $.ajax({
+            url: path,
+            type: "POST",
+            dataType: "json",
+            data: datas,
+            success : function (datas) {
+                if(datas.code==200){
+                    alert("秒杀成功")
+                }else {
+                    alert("秒杀失败")
+                }
+            }
+        })
+    }
+    
+    function refresshCaptcha() {
+        var id = $("#seckid").val();
+        $("#captchImg").attr("src","/seckill/captcha/"+id)
+    }
+
+</script>
+</html>

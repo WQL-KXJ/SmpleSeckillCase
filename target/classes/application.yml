@@ -1,0 +1,47 @@
+spring:
+  web:
+    resources:
+      static-locations: classpath:/static/
+  mvc:
+    static-path-pattern: /static/**
+
+  rabbitmq:
+    host: 192.168.68.133
+    port: 5672
+    username: admin
+    password: 123
+    virtual-host: /
+
+  datasource:
+    username: root
+    password: 123
+    url: jdbc:mysql://localhost:3306/seckill?useUnicode=true&characterEncoding=utf8
+    driver-class-name: com.mysql.jdbc.Driver
+
+    druid:
+      stat-view-servlet:
+        enabled: true
+        login-username: wql
+        login-password: 123
+        url-pattern: /druid/*
+      max-wait-thread-count: 10
+
+  thymeleaf:
+    cache: false
+
+  redis:
+    host: 127.0.0.1
+    database: 0
+    port: 6379
+    jedis:
+      pool:
+        enabled: true
+        max-active: 10
+
+mybatis-plus:
+#  config-location: classpath:/mybatisplus/mybatisplus.xml
+  mapper-locations: classpath:/mybatisplus/mapper/*
+  configuration:
+    cache-enabled: true
+
+

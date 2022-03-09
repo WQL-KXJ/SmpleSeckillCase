@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.my.seckill.dao.mapper.TSeckillGoodsMapper">
+
+    <update id="countlose">
+
+            UPDATE t_seckill_goods SET stock_count=stock_count-1 where goods_id = #{goodsid};
+
+    </update>
+
+
+    <select id="selectgoodsandseckillgoods" resultType="com.my.seckill.dao.pojo.GoodsVo">
+
+        SELECT g.id,g.goods_name,g.goods_title,g.goods_img,g.goods_detail,g.goods_price,g.goods_stock,
+        sk.seckill_price,sk.stock_count,sk.start_date,sk.end_date FROM goods g LEFT JOIN t_seckill_goods as sk ON g.id = sk.goods_id WHERE
+        g.id = #{id};
+
+    </select>
+
+    <select id="getgoodscount" resultType="java.lang.Integer">
+
+        SELECT stock_count FROM  t_seckill_goods where goods_id = #{goodsid};
+
+    </select>
+
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/seckill/controller/GoodsController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/seckill/controller/TOrderController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/seckill/controller/TSeckillGoodsController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/seckill/controller/TSeckillOrderController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/seckill/dao/mapper/GoodsMapper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/seckill/dao/mapper/TOrderMapper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/seckill/dao/mapper/TSeckillGoodsMapper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/seckill/dao/mapper/TSeckillOrderMapper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/seckill/dao/pojo/Goods.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/seckill/dao/pojo/TOrder.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/seckill/dao/pojo/TSeckillGoods.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/seckill/dao/pojo/TSeckillOrder.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/seckill/service/IGoodsService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/seckill/service/ITOrderService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/seckill/service/ITSeckillGoodsService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/seckill/service/ITSeckillOrderService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/seckill/service/impl/GoodsServiceImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/seckill/service/impl/TOrderServiceImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/seckill/service/impl/TSeckillGoodsServiceImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/my/seckill/service/impl/TSeckillOrderServiceImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/application.yml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/mybatisplus/mapper/SeckilluserMapper.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/css/bootstrap.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/js/bootstrap.js" charset="UTF-8" />
+    <file url="PROJECT" charset="GBK" />
+  </component>
+</project>
