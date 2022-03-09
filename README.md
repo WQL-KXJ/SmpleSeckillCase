@@ -11,6 +11,6 @@
 ##### 4，Mybatis二级缓存：实现了Mybatis提供Cache接口，使用Redis作为缓存数据库
 ##### 5，Shiro缓存：使用Shiro整合Redis
 ##### 注：项目主要作为案例使用
-#### 运行注意事项：用户的注册和登录使用Shiro的MD5+Slat进行加密的，不能直接修改数据库实现添加用户，只能提供接口注册(没有提供注册页面)，注册接口：/admin/logon，通过Postman软件提供POST请求，Key为username和password
+#### 运行注意事项：用户的注册和登录使用Shiro的MD5+Slat进行加密的，不能直接修改数据库实现添加用户，只能提供接口注册(没有提供注册页面)，注册接口：/admin/logon，通过Postman软件提供POST请求，Key为username和password(测试用户：wql 123)
 ![秒杀登录](http://wql.luoqin.ltd/wp-content/uploads/2022/03/seckilllogin.png)
 ![秒杀列表](http://wql.luoqin.ltd/wp-content/uploads/2022/03/seckillxq.png)  
